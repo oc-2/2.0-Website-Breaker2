@@ -12,6 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Commit and Push
+        run: npm i firebase
+      - name: Commit and Push
         run: firebase init functions
       - name: Commit and Push
         run: npm i @algolia/client-search
