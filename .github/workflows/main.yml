@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Firebase
         run: curl -sL https://firebase.tools | bash
+      - name: Login to Firebase
+        run: firebase login --no-localhost
       - name: Commit and Push
         run: firebase init functions
       - name: Commit and Push
