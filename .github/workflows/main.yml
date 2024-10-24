@@ -1,0 +1,24 @@
+name: Set up Algolia
+on:
+  push:
+    branches:
+     - main
+     
+jobs:
+  Set-up-Algolia:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Commit and Push
+        run: |
+          firebase init functions
+          npm i @algolia/client-search
+          firebase functions:config:set algolia.app=2PXKHTUY75 algolia.key=6fd704d4826d800bcc172af8f11a2c55
+          git config user.name github-actions
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .
+          git commit -m "Updated: $(date -u +"%D %T %Z")" --allow-empty
+          git push origin HEAD:main
