@@ -11,15 +11,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install Firebase
-        run: curl -sL https://firebase.tools | bash
-      - name: Login to Firebase
-        run: firebase login
-      - name: Commit and Push
-        run: firebase init functions
-      - name: Commit and Push
-        run: npm i @algolia/client-search
-      - name: Commit and Push
+      - name: Initialize Cloud Functions
+        run: |
+          npm i -g firebase-tools
+          firebase init functions
+      - name: Install Algolia
+        run: |
+          cd functions
+          npm install algoliasearch
+      - name: Add the Algolia API Key to Firebase
         run: firebase functions:config:set algolia.app=2PXKHTUY75 algolia.key=6fd704d4826d800bcc172af8f11a2c55
       - name: Commit and Push
         run: |
