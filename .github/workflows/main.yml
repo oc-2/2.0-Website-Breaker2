@@ -14,7 +14,7 @@ jobs:
       - name: Install Firebase
         run: curl -sL https://firebase.tools | bash
       - name: Login to Firebase
-        run: firebase login --no-localhost
+        run: firebase login
       - name: Commit and Push
         run: firebase init functions
       - name: Commit and Push
