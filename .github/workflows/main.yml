@@ -14,6 +14,8 @@ jobs:
       - name: Initialize Cloud Functions
         run: |
           npm i -g firebase-tools
+          firebase emulators:start --only functions,firestore,auth --project demo-project-id &
+          sleep 5 # Wait for emulators to start
       - name: Install Algolia
         run: |
           npm install algoliasearch
