@@ -42,10 +42,18 @@ jobs:
           }" > .runtimeconfig.json
         working-directory: ./functions
 
-      - name: Run Firebase Emulators
+      - name: Create firebase.json Configuration
         run: |
-          firebase emulators:start --only functions --import=./functions --export-on-exit=./functions
-        working-directory: ./functions
+          echo '{
+            "functions": {
+              "source": "functions"
+            }
+          }' > firebase.json
+
+      - name: Run Firebase Functions Emulator (Demo Mode)
+        run: |
+          firebase emulators:start --only functions --project demo-project --quiet
+        working-directory: .
 
       - name: Commit and Push
         run: |
