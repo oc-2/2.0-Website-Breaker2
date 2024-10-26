@@ -52,7 +52,7 @@ jobs:
 
       - name: Run Firebase Functions Emulator (Demo Mode)
         run: |
-          firebase emulators:start --only functions --project demo-project --quiet
+          firebase emulators:start --only functions --project demo-project
         working-directory: .
 
       - name: Commit and Push
