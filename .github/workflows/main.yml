@@ -15,20 +15,18 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: '16'
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
       - name: Initialize Firebase Functions Locally
         run: |
-          mkdir -p functions
+          mkdir functions
           cd functions
           npm init -y
           npm install firebase-functions firebase-admin
-          echo 'module.exports = require("firebase-functions");' > index.js
-        working-directory: ./functions
+          echo 'const functions = require("firebase-functions"); module.exports = functions;' > index.js
+        working-directory: .
 
       - name: Install Algolia
         run: npm install algoliasearch
