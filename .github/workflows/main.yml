@@ -1,30 +1,58 @@
 name: Set up Algolia
+
 on:
   push:
     branches:
-     - main
-     
+      - main
+
 jobs:
-  Set-up-Algolia:
+  set-up-algolia:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Initialize Cloud Functions
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Initialize Firebase Functions Locally
         run: |
-          npm i -g firebase-tools
-          firebase init functions
-      - name: Install Algolia
-        run: |
+          mkdir -p functions
           cd functions
-          npm install algoliasearch
-      - name: Add the Algolia API Key to Firebase
-        run: firebase functions:config:set algolia.app=2PXKHTUY75 algolia.key=6fd704d4826d800bcc172af8f11a2c55
+          npm init -y
+          npm install firebase-functions firebase-admin
+          echo 'module.exports = require("firebase-functions");' > index.js
+        working-directory: ./functions
+
+      - name: Install Algolia
+        run: npm install algoliasearch
+        working-directory: ./functions
+
+      - name: Add Local Firebase Config (without Firebase account)
+        run: |
+          echo "{
+            \"algolia\": {
+              \"app\": \"2PXKHTUY75\",
+              \"key\": \"6fd704d4826d800bcc172af8f11a2c55\"
+            }
+          }" > .runtimeconfig.json
+        working-directory: ./functions
+
+      - name: Run Firebase Emulators
+        run: |
+          firebase emulators:start --only functions --import=./functions --export-on-exit=./functions
+        working-directory: ./functions
+
       - name: Commit and Push
         run: |
-          git config user.name github-actions
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config --global user.name "github-actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Updated: $(date -u +"%D %T %Z")" --allow-empty
           git push origin HEAD:main
