@@ -17,8 +17,10 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Run
-        run: npx create-react-app website-breaker
-
+        run: |
+          cd website-breaker
+          yarn add
+          
       - name: Commit and Push
         run: |
           git config --global user.name "github-actions"
