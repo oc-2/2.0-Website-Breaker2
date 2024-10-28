@@ -19,7 +19,7 @@ jobs:
       - name: Run
         run: |
           cd website-breaker
-          yarn add
+          yarn add react-instantsearch
           
       - name: Commit and Push
         run: |
