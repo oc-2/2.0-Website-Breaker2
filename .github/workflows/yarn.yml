@@ -18,5 +18,6 @@ jobs:
 
       - name: Install Firebase CLI
         run: |
+          cd geo-search
           yarn
           yarn start
