@@ -20,7 +20,6 @@ jobs:
         run: |
           cd geo-search
           echo "oc-2.github.io/2.0-Website-Breaker" > geo-search/CNAME
-          mv CNAME src/
         
       - name: Commit and Push
         run: |
