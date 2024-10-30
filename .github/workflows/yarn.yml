@@ -18,5 +18,5 @@ jobs:
 
       - name: Install Firebase CLI
         run: |
-          cd geo-search
-          ng serve --port 3000
+          yarn
+          yarn start
