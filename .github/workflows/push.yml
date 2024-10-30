@@ -19,8 +19,9 @@ jobs:
       - name: Install Firebase CLI
         run: |
           cd geo-search
-          cat > CNAME
-
+          echo "oc-2.github.io/2.0-Website-Breaker" > geo-search/CNAME
+          mv CNAME src/
+        
       - name: Commit and Push
         run: |
           git config --global user.name "github-actions"
