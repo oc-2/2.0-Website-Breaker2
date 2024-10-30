@@ -17,7 +17,9 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Install ReactInstantSearch
-        run: npm i react-instantsearch
+        run: |
+          cd public
+          npm i react-instantsearch
 
       - name: Commit and Push
         run: |
