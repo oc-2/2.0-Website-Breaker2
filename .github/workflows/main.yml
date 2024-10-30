@@ -19,7 +19,7 @@ jobs:
       - name: Install ReactInstantSearch
         run: |
           cd website-breaker
-          npm i react-instantsearch
+          yarn install
 
       - name: Commit and Push
         run: |
