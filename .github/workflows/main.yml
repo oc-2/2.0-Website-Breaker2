@@ -35,7 +35,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          cd geo-search
+          cd website-breaker
           yarn install
           yarn build
 
