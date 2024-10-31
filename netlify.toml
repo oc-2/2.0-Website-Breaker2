@@ -1,0 +1,15 @@
+[build]
+  publish = "geo-search"
+  command = "yarn run build"  # Adjust if you are using a different build command
+
+[dev]
+  command = "yarn run build"  # Adjust for local development command
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/geo-search/*"
+  to = "/geo-search/:splat"
+  status = 200
+  force = true
+
+# You can add more configurations as needed
