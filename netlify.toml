@@ -1,6 +1,6 @@
 [build]
   base = "geo-search/"
-  publish = "geo-search"
+  publish = "dist/geo-search"
   command = "yarn run build"
 
 [dev]
