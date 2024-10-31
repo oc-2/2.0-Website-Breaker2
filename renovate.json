@@ -1,12 +1,14 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "packageRules": [
     {
-      "packagePatterns": ["*"],
       "groupName": "all dependencies",
-      "enabled": true
+      "enabled": true,
+      "matchPackageNames": [
+        "*"
+      ]
     }
   ],
   "automerge": true,
